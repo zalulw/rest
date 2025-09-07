@@ -78,7 +78,7 @@ public class R6OpsController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("operators/delete")]
+    [Route("operators/delete/{id}")]
     public async Task<IActionResult> DeleteAsync([FromRoute][Required] int id)
     {
         Operators.RemoveAt(id);
