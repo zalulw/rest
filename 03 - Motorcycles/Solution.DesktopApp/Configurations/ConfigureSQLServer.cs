@@ -2,10 +2,10 @@
 
 public static class ConfigureSQLServer
 {
-	public static MauiAppBuilder UseMsSqlServer(this MauiAppBuilder builder)
-	{	
-		builder.Services.AddDbContext<AppDbContext>();
+    public static MauiAppBuilder UseMsSqlServer(this MauiAppBuilder builder)
+    {
+        builder.Services.AddDbContext<AppDbContext>();
 
-		return builder;
-	}
+        return builder;
+    }
 }

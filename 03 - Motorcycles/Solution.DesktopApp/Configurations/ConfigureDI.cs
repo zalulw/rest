@@ -2,9 +2,9 @@
 
 public static class ConfigureDI
 {
-	public static MauiAppBuilder UseDIConfiguration(this MauiAppBuilder builder)
-	{
-		builder.Services.AddTransient<MainViewModel>();
+    public static MauiAppBuilder UseDIConfiguration(this MauiAppBuilder builder)
+    {
+        builder.Services.AddTransient<MainViewModel>();
         builder.Services.AddTransient<MotorcycleListViewModel>();
         builder.Services.AddTransient<CreateOrEditMotorcycleViewModel>();
 
@@ -12,9 +12,9 @@ public static class ConfigureDI
         builder.Services.AddTransient<MotorcycleListView>();
         builder.Services.AddTransient<CreateOrEditMotorcycleView>();
 
-        builder.Services.AddScoped<IGoogleDriveService, GoogleDriveService> ();
+        builder.Services.AddScoped<IGoogleDriveService, GoogleDriveService>();
         builder.Services.AddTransient<IMotorcycleService, MotorcycleService>();
 
         return builder;
-	}
+    }
 }

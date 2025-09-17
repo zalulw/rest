@@ -6,7 +6,7 @@ public class GoogleDriveService(GoogleDriveSettings googleDriveSettings) : IGoog
     {
         var service = CreateGoogleDriveService();
 
-        if(service is null)
+        if (service is null)
         {
             return Error.NotFound(description: "Google Drive Service is down");
         }

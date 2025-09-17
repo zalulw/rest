@@ -1,8 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿namespace Solution.Core.Models;
 
-namespace Solution.Core.Models;
-
-public class PaginationModel<T> 
+public class PaginationModel<T>
 {
     public List<T> Items { get; set; }
     public int Count { get; set; }

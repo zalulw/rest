@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
 
 namespace homework.Controllers;
 
@@ -62,7 +61,7 @@ public class R6OpsController : ControllerBase
 
     [HttpPost]
     [Route("operators/create")]
-    public async Task<IActionResult> PostAsync([FromBody][Required] string op) 
+    public async Task<IActionResult> PostAsync([FromBody][Required] string op)
     {
         Operators.Add(op);
         return Ok(Operators);

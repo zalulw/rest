@@ -2,8 +2,8 @@
 
 public static class ConfigureAppVariables
 {
-	public static MauiAppBuilder UseAppConfigurations(this MauiAppBuilder builder)
-	{
+    public static MauiAppBuilder UseAppConfigurations(this MauiAppBuilder builder)
+    {
 #if DEBUG
         var file = "appSettings.Development.json";
 #else
@@ -17,6 +17,6 @@ public static class ConfigureAppVariables
 
         builder.Configuration.AddConfiguration(config);
 
-		return builder;
-	}
+        return builder;
+    }
 }

@@ -1,5 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using Solution.Validators;
+﻿
+
 
 namespace Solution.DesktopApp.ViewModels;
 
@@ -14,7 +14,7 @@ public partial class CreateOrEditMotorcycleViewModel(
     #endregion
 
     #region validation
-    public IRelayCommand ValidatieCommand => new AsyncRelayCommand<string>(OnValidateAsync);
+    public IRelayCommand ValidateCommand => new AsyncRelayCommand<string>(OnValidateAsync);
     #endregion
 
     #region event commands
@@ -40,9 +40,6 @@ public partial class CreateOrEditMotorcycleViewModel(
     private IList<TypeModel> types = [];
 
     [ObservableProperty]
-    private IList<uint> cylinders = [1, 2, 3, 4, 6, 8];
-
-    [ObservableProperty]
     private ImageSource image;
 
     private FileResult selectedFile = null;
@@ -54,7 +51,7 @@ public partial class CreateOrEditMotorcycleViewModel(
 
         bool hasValue = query.TryGetValue("Motorcycle", out object result);
 
-        if(!hasValue)
+        if (!hasValue)
         {
             asyncButtonAction = OnSaveAsync;
             Title = "Add new  motorcycle";
@@ -73,7 +70,7 @@ public partial class CreateOrEditMotorcycleViewModel(
         this.ImageId = motorcycle.ImageId;
         this.WebContentLink = motorcycle.WebContentLink;
 
-        if(!string.IsNullOrEmpty(motorcycle.WebContentLink))
+        if (!string.IsNullOrEmpty(motorcycle.WebContentLink))
         {
             Image = new UriImageSource
             {
@@ -97,6 +94,8 @@ public partial class CreateOrEditMotorcycleViewModel(
 
     private async Task OnSaveAsync()
     {
+        this.ValidationResult = await validator.ValidateAsync(this);
+
         if (!ValidationResult.IsValid)
         {
             return;
@@ -118,6 +117,8 @@ public partial class CreateOrEditMotorcycleViewModel(
 
     private async Task OnUpdateAsync()
     {
+        this.ValidationResult = await validator.ValidateAsync(this);
+
         if (!ValidationResult.IsValid)
         {
             return;
@@ -141,7 +142,7 @@ public partial class CreateOrEditMotorcycleViewModel(
             PickerTitle = "Please select the motorcycle image"
         });
 
-        if(selectedFile is null)
+        if (selectedFile is null)
         {
             return;
         }
@@ -164,8 +165,8 @@ public partial class CreateOrEditMotorcycleViewModel(
 
         await Application.Current.MainPage.DisplayAlert(title, message, "OK");
 
-        this.ImageId = imageUploadResult.IsError ? null : imageUploadResult.Id;
-        this.WebContentLink = imageUploadResult.IsError ? null : imageUploadResult.WebContentLink;
+        this.ImageId = imageUploadResult.IsError ? null : imageUploadResult.Value.Id;
+        this.WebContentLink = imageUploadResult.IsError ? null : imageUploadResult.Value.WebContentLink;
     }
 
     private async Task LoadManufacturersAsync()
@@ -202,13 +203,11 @@ public partial class CreateOrEditMotorcycleViewModel(
     {
         var result = await validator.ValidateAsync(this, options => options.IncludeProperties(propertyName));
 
-        ValidationResult.Errors.Remove(ValidationResult.Errors.FirstOrDefault(x => x.PropertyName == propertyName));
+        ValidationResult.Errors.Remove(ValidationResult.Errors.FirstOrDefault(x => propertyName == propertyName));
 
         ValidationResult.Errors.Remove(ValidationResult.Errors.FirstOrDefault(x => x.PropertyName == MotorcycleModelValidator.GlobalProperty));
-        ValidationResult.Errors.Remove(ValidationResult.Errors.AddRange(result.Errors));
+        ValidationResult.Errors.AddRange(result.Errors);
 
         OnPropertyChanged(nameof(ValidationResult));
-
     }
-   
 }

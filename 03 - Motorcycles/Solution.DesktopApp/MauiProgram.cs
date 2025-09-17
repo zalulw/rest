@@ -1,7 +1,4 @@
-﻿using Syncfusion.Maui.Core.Hosting;
-using Syncfusion.Maui.Toolkit.Hosting;
-
-namespace Solution.DesktopApp;
+﻿namespace Solution.DesktopApp;
 
 public static class MauiProgram
 {
@@ -13,9 +10,9 @@ public static class MauiProgram
                {
                    options.SetShouldEnableSnackbarOnWindows(true);
                })
-               .UseMauiCommunityToolkitMarkup()
                .ConfigureSyncfusionCore()
                .ConfigureSyncfusionToolkit()
+               .UseMauiCommunityToolkitMarkup()
                .UseFontConfiguration()
                .UseAppConfigurations()
                .UseAppSettingsMapping()
@@ -23,7 +20,7 @@ public static class MauiProgram
                .UseMsSqlServer();
 
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
         return builder.Build();

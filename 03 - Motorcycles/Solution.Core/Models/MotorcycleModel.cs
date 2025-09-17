@@ -1,6 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-
-namespace Solution.Core.Models;
+﻿namespace Solution.Core.Models;
 
 public partial class MotorcycleModel : ObservableObject
 {
@@ -23,30 +21,30 @@ public partial class MotorcycleModel : ObservableObject
     private string model;
 
     [ObservableProperty]
-    private int cubic;
+    private int? cubic;
 
     [ObservableProperty]
-    private int releaseYear;
+    private int? releaseYear;
 
     [ObservableProperty]
-    private int numberOfCylinders;
+    private int? numberOfCylinders;
 
     public MotorcycleModel()
     {
-        
+
     }
 
-    public MotorcycleModel(MotorcycleEntity entity)
+    public MotorcycleModel(MotorcycleEntity entity) : this()
     {
         this.Id = entity.PublicId;
         this.ImageId = entity.ImageId;
         this.WebContentLink = entity.WebContentLink;
-        this.Manufacturer.Value = new ManufacturerModel(entity.Manufacturer);
-        this.Type.Value = new TypeModel(entity.Type);
-        this.Model.Value = entity.Model;
-        this.Cubic.Value = entity.Cubic;
-        this.ReleaseYear.Value = entity.ReleaseYear;
-        this.NumberOfCylinders.Value = entity.Cylinders;
+        this.Manufacturer = new ManufacturerModel(entity.Manufacturer);
+        this.Type = new TypeModel(entity.Type);
+        this.Model = entity.Model;
+        this.Cubic = entity.Cubic;
+        this.ReleaseYear = entity.ReleaseYear;
+        this.NumberOfCylinders = entity.Cylinders;
     }
 
     public MotorcycleEntity ToEntity()
@@ -58,10 +56,10 @@ public partial class MotorcycleModel : ObservableObject
             TypeId = Type.Id,
             ImageId = ImageId,
             WebContentLink = WebContentLink,
-            Model = Model.Value,
+            Model = Model,
             Cubic = Cubic.Value,
-            ReleaseYear = ReleaseYear,
-            Cylinders = NumberOfCylinders
+            ReleaseYear = ReleaseYear.Value,
+            Cylinders = NumberOfCylinders.Value
         };
     }
 
@@ -69,13 +67,15 @@ public partial class MotorcycleModel : ObservableObject
     {
         entity.PublicId = Id;
         entity.ManufacturerId = Manufacturer.Id;
-        entity.TypeId = Type.Value.Id;
+        entity.TypeId = Type.Id;
         entity.ImageId = ImageId;
         entity.WebContentLink = WebContentLink;
         entity.Model = Model;
-        entity.Cubic = Cubic;
-        entity.ReleaseYear = ReleaseYear;
-        entity.Cylinders = NumberOfCylinders;
+        entity.Cubic = Cubic.Value;
+        entity.ReleaseYear = ReleaseYear.Value;
+        entity.Cylinders = NumberOfCylinders.Value;
     }
 
+
 }
+

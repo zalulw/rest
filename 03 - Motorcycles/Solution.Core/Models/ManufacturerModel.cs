@@ -1,11 +1,9 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿namespace Solution.Core.Models;
 
-namespace Solution.Core.Models;
-
-public class ManufacturerModel : ObservableObject
+public partial class ManufacturerModel : ObservableObject
 {
     [ObservableProperty]
-    private uint id;
+    private int id;
 
     [ObservableProperty]
     private string name;
@@ -14,7 +12,7 @@ public class ManufacturerModel : ObservableObject
     {
     }
 
-    public ManufacturerModel(uint id, string name)
+    public ManufacturerModel(int id, string name)
     {
         Id = id;
         Name = name;
@@ -22,7 +20,7 @@ public class ManufacturerModel : ObservableObject
 
     public ManufacturerModel(ManufacturerEntity entity)
     {
-        if(entity is null)
+        if (entity is null)
         {
             return;
         }
