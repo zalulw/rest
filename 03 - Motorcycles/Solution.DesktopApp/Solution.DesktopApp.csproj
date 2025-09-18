@@ -89,6 +89,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.9" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.9" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="9.0.9" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="9.0.9" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.9" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.9" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.9">
@@ -125,9 +126,6 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\CreateOrEditMotorcycleView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ModifyManufacturersAndTypeView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\MotorcycleListView.xaml">

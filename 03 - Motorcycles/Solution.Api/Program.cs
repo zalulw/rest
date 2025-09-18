@@ -3,7 +3,9 @@ using Solution.Api.Configurations;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.LoadAppSettings()
-       .ConfigureDatabase();
+       .ConfigureDI()
+       .ConfigureDatabase()
+       .ConfigureFluentValidation();
 
 
 builder.Services.AddControllers();
