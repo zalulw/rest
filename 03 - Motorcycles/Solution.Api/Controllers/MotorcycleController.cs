@@ -23,6 +23,18 @@ public class MotorcycleController(IMotorcycleService motorcycleService) : BaseCo
             errors => Problem(errors));
     }
 
+    [HttpGet]
+    [Route("api/motorcycle/page{page}")]
+    public async Task<IActionResult> GetPageAsync([FromRoute]int page = 0)
+    { 
+
+        var result = await motorcycleService.GetPagedAsync(page);
+
+        return result.Match(
+            result => Ok(result),
+            errors => Problem(errors));
+    }
+
     [HttpPost]
     [Route("api/motorcycle/create")]
     public async Task<IActionResult> CreateAsync([FromBody] [Required] MotorcycleModel model)

@@ -1,0 +1,14 @@
+﻿namespace Solution.Core.Interfaces;
+
+public interface ITypeService
+{
+    Task<ErrorOr<TypeModel>> CreateAsync(TypeModel model);
+    Task<ErrorOr<Success>> UpdateAsync(TypeModel model);
+    Task<ErrorOr<Success>> DeleteAsync(string manufacturerId);
+    Task<ErrorOr<TypeModel>> GetByIdAsync(string manufacturerId);
+    Task<ErrorOr<List<TypeModel>>> GetAllAsync();
+    Task<ErrorOr<PaginationModel<TypeModel>>> GetPagedAsync(int page = 0);
+
+
+
+}

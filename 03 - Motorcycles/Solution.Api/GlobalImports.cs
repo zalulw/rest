@@ -11,4 +11,3 @@ global using Nest;
 global using Solution.Core.Models;
 global using FluentValidation;
 global using FluentValidation.AspNetCore;
-global using Solution.Validators.Interceptors;

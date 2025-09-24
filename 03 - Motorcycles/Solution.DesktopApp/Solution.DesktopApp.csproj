@@ -128,6 +128,12 @@
 	  <MauiXaml Update="Views\CreateOrEditMotorcycleView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\ModifyManufacturerView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ModifyTypeView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\MotorcycleListView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

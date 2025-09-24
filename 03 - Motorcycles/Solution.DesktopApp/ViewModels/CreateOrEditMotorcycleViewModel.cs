@@ -1,7 +1,4 @@
-﻿
-
-
-namespace Solution.DesktopApp.ViewModels;
+﻿namespace Solution.DesktopApp.ViewModels;
 
 public partial class CreateOrEditMotorcycleViewModel(
     AppDbContext dbContext,
@@ -22,7 +19,7 @@ public partial class CreateOrEditMotorcycleViewModel(
     public IAsyncRelayCommand ImageSelectCommand => new AsyncRelayCommand(OnImageSelectAsync);
     #endregion
 
-    private MotorcycleModelValidator validator => new MotorcycleModelValidator();
+    private MotorcycleModelValidator validator => new MotorcycleModelValidator(null);
 
     [ObservableProperty]
     private ValidationResult validationResult = new ValidationResult();
