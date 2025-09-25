@@ -10,7 +10,7 @@
              xmlns:validator="clr-namespace:Solution.Validators;assembly=Solution.Validators"
              x:Class="Solution.DesktopApp.Views.ModifyManufacturerView"
              x:DataType="viewModels:ModifyManufacturerViewModel"
-             Title="ModifyManufacturerView">
+             Title="Modify manufacturers">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="24">
             <BoxView HeightRequest="2" Color="Gray" Margin="0,20,0,20"/>

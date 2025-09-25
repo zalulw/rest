@@ -10,7 +10,8 @@
              xmlns:validator="clr-namespace:Solution.Validators;assembly=Solution.Validators"
              x:Class="Solution.DesktopApp.Views.ModifyTypeView"
              x:DataType="viewModels:ModifyTypeViewModel"
-             x:Name="this">
+             x:Name="this"
+             Title="Modify types">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="24">
             <BoxView HeightRequest="2" Color="Gray" Margin="0,20,0,20"/>

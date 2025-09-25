@@ -9,6 +9,7 @@ public partial class ModifyTypeView : ContentPage
     public ModifyTypeView(ModifyTypeViewModel viewModel)
     {
         BindingContext = viewModel;
+
         InitializeComponent();
     }
 } 
