@@ -8,13 +8,11 @@ public partial class ModifyManufacturerViewModel(AppDbContext dbcontext) : Obser
     [ObservableProperty]
     private ObservableCollection<ManufacturerModel> manufacturers = new();
 
-
     [ObservableProperty]
     private ManufacturerModel selectedManufacturer;
 
-
-    public IAsyncRelayCommand AddManufacturerCommand => new AsyncRelayCommand(OnAddManufacturerAsync);
-    public IAsyncRelayCommand RemoveManufacturerCommand => new AsyncRelayCommand(OnRemoveManufacturerAsync);
+    public IAsyncRelayCommand AddTypeCommand => new AsyncRelayCommand(OnAddManufacturerAsync);
+    public IAsyncRelayCommand RemoveTypeCommand => new AsyncRelayCommand(OnRemoveManufacturerAsync);
 
     public IAsyncRelayCommand AppearingCommand => new AsyncRelayCommand(OnAppearingAsync);
 
@@ -32,10 +30,10 @@ public partial class ModifyManufacturerViewModel(AppDbContext dbcontext) : Obser
         Manufacturers = new ObservableCollection<ManufacturerModel>(list);
     }
 
+
     private async Task OnAddManufacturerAsync()
     {
-        string name = await Application.Current.MainPage.DisplayPromptAsync("Add Manufacturer", "Enter Manufacturer Name:");
-
+        string name = await Application.Current.MainPage.DisplayPromptAsync("Add Manufacturer", "Enter manufacturer Name:");
         if (string.IsNullOrWhiteSpace(name))
         {
             return;
@@ -50,28 +48,24 @@ public partial class ModifyManufacturerViewModel(AppDbContext dbcontext) : Obser
 
     private async Task OnRemoveManufacturerAsync()
     {
-        if (selectedManufacturer is null)
+        if (SelectedManufacturer is null)
         {
             return;
         }
 
-        var confirm = await Application.Current.MainPage.DisplayAlert("Remove Manufacturer", $"Remove '{selectedManufacturer.Name}'?", "Yes", "No");
+        var confirm = await Application.Current.MainPage.DisplayAlert("Remove Manufacturer", $"Remove '{SelectedManufacturer.Name}'?", "Yes", "No");
         if (!confirm)
         {
             return;
         }
 
-        var entity = await dbcontext.Manufacturers.FindAsync(selectedManufacturer.Id);
+        var entity = await dbcontext.Types.FindAsync(SelectedManufacturer.Id);
         if (entity is null)
         {
             return;
         }
 
-        dbcontext.Manufacturers.Remove(entity);
+        dbcontext.Types.Remove(entity);
         await dbcontext.SaveChangesAsync();
-
-        Manufacturers.Remove(selectedManufacturer);
-        selectedManufacturer = null;
     }
-
 }

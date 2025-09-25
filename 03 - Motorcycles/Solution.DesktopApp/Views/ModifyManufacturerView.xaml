@@ -9,18 +9,19 @@
              xmlns:behaviors="clr-namespace:Solution.DesktopApp.Behaviors"
              xmlns:validator="clr-namespace:Solution.Validators;assembly=Solution.Validators"
              x:Class="Solution.DesktopApp.Views.ModifyManufacturerView"
+             x:DataType="viewModels:ModifyManufacturerViewModel"
              Title="ModifyManufacturerView">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="24">
             <BoxView HeightRequest="2" Color="Gray" Margin="0,20,0,20"/>
 
-            <Label Text="Types" FontAttributes="Bold" FontSize="18"/>
+            <Label Text="Manufacturers" FontAttributes="Bold" FontSize="18"/>
             <Picker ItemsSource="{Binding Manufacturers}" 
                 SelectedItem="{Binding SelectedManufacturer}" 
                 ItemDisplayBinding="{Binding SelectedManufacturer.Name}" />
 
             <HorizontalStackLayout Spacing="12">
-                <Button Text="Add Type" Command="{Binding AddManufacturerCommand}" />
+                <Button Text="Add manufacturer" Command="{Binding AddManufacturerCommand}" />
                 <Button Text="Remove Selected" Command="{Binding RemoveManufacturerCommand}" IsEnabled="{Binding SelectedManufacturer, Converter={StaticResource NullToBoolConverter}}" />
             </HorizontalStackLayout>
 

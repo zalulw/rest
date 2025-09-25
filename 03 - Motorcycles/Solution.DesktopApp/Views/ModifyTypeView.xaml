@@ -18,7 +18,7 @@
             <Label Text="Types" FontAttributes="Bold" FontSize="18"/>
             <Picker ItemsSource="{Binding Types}" 
                     SelectedItem="{Binding SelectedType}" 
-                    ItemDisplayBinding="{Binding SelectedManufacturer.Name}" />
+                    ItemDisplayBinding="{Binding SelectedType.Name}" />
 
             <HorizontalStackLayout Spacing="12">
                 <Button Text="Add Type" Command="{Binding AddTypeCommand}" />

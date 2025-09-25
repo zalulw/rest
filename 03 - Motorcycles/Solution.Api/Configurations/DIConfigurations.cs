@@ -7,6 +7,8 @@ public static class DIConfigurations
         builder.Services.AddHttpContextAccessor();
 
         builder.Services.AddTransient<IMotorcycleService, MotorcycleService>();
+        builder.Services.AddTransient<ITypeService, TypeService>();
+        builder.Services.AddTransient<IManufacturerService, ManufacturerService>();
 
         return builder;
     }

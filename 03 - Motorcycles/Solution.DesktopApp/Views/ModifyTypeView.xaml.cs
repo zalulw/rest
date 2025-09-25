@@ -6,7 +6,7 @@ public partial class ModifyTypeView : ContentPage
 
     public static string Name => nameof(ModifyTypeView);
 
-    public ModifyTypeView(ModifyManufacturerViewModel viewModel)
+    public ModifyTypeView(ModifyTypeViewModel viewModel)
     {
         BindingContext = viewModel;
         InitializeComponent();
