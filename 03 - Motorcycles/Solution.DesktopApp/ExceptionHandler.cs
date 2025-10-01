@@ -6,19 +6,19 @@ public static class ExceptionHandler
     private static Exception _lastFirstChanceException;
 #endif
 
-    // We'll route all unhandled exceptions through this one event.
-    public static event UnhandledExceptionEventHandler UnhandledException;
+	// We'll route all unhandled exceptions through this one event.
+	public static event UnhandledExceptionEventHandler UnhandledException;
 
-    static ExceptionHandler()
-    {
-        // This is the normal event expected, and should still be used.
-        // It will fire for exceptions from iOS and Mac Catalyst,
-        // and for exceptions on background threads from WinUI 3.
+	static ExceptionHandler()
+	{
+		// This is the normal event expected, and should still be used.
+		// It will fire for exceptions from iOS and Mac Catalyst,
+		// and for exceptions on background threads from WinUI 3.
 
-        AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
-        {
-            UnhandledException?.Invoke(sender, args);
-        };
+		AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
+		{
+			UnhandledException?.Invoke(sender, args);
+		};
 
 #if IOS || MACCATALYST
 
@@ -75,7 +75,7 @@ public static class ExceptionHandler
             UnhandledException?.Invoke(sender, new UnhandledExceptionEventArgs(exception, true));
         };
 #endif
-    }
+	}
 }
 
 #if ANDROID

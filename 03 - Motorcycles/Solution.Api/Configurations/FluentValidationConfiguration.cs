@@ -12,7 +12,6 @@ public static class FluentValidationConfiguration
         builder.Services.AddFluentValidationClientsideAdapters();
         builder.Services.AddValidatorsFromAssembly(Solution.Validators.AssemblyReference.Assembly);
 
-
         return builder;
     }
 }

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-
-namespace Solution.DesktopApp.Configurations;
+﻿namespace Solution.DesktopApp.Configurations;
 
 public static class ConfigureSQLServer
 {
@@ -8,17 +6,14 @@ public static class ConfigureSQLServer
     {
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-        builder.Services.AddDbContext<AppDbContext>(options =>
-            options.UseLazyLoadingProxies()
-                .UseSqlServer(connectionString, sqlOptions =>
-                {
-                    sqlOptions.MigrationsAssembly(Solution.Database.AssemblyReference.Assembly);
-                    sqlOptions.EnableRetryOnFailure();
-                    sqlOptions.CommandTimeout(300);
-                }));
-
+        builder.Services.AddDbContext<AppDbContext>(options => options.UseLazyLoadingProxies()
+                                                                      .UseSqlServer(connectionString, options =>
+                                                                      {
+                                                                          options.MigrationsAssembly(Solution.Database.AssemblyReference.Assembly);
+                                                                          options.EnableRetryOnFailure();
+                                                                          options.CommandTimeout(300);
+                                                                      }));
 
         return builder;
     }
 }
-

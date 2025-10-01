@@ -2,7 +2,7 @@
 
 public static class LoadAppSettingsConfiguration
 {
-    public static WebApplicationBuilder LoadAppSettings(this WebApplicationBuilder builder)
+    public static WebApplicationBuilder LoadAppSettingsVariables(this WebApplicationBuilder builder)
     {
         var environment = builder.Configuration.GetValue<string>("Environment");
 

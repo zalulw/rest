@@ -1,6 +1,7 @@
 ﻿namespace Solution.DesktopApp.ViewModels;
 
-public partial class MotorcycleListViewModel(IMotorcycleService motorcycleService) : MotorcycleModel
+[ObservableObject]
+public partial class MotorcycleListViewModel(IMotorcycleService motorcycleService)
 {
     #region life cycle commands
     public IAsyncRelayCommand AppearingCommand => new AsyncRelayCommand(OnAppearingAsync);
@@ -74,7 +75,7 @@ public partial class MotorcycleListViewModel(IMotorcycleService motorcycleServic
     }
 
     private async Task OnDeleteAsync(string? id)
-    {
+    { 
         var result = await motorcycleService.DeleteAsync(id);
 
         var message = result.IsError ? result.FirstError.Description : "Motorcycle deleted.";
@@ -85,7 +86,7 @@ public partial class MotorcycleListViewModel(IMotorcycleService motorcycleServic
             var motorcycle = motorcycles.SingleOrDefault(x => x.Id == id);
             motorcycles.Remove(motorcycle);
 
-            if (motorcycles.Count == 0)
+            if(motorcycles.Count == 0)
             {
                 await LoadMotorcyclesAsync();
             }

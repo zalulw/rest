@@ -1,6 +1,4 @@
-﻿using Solution.Database.Entities;
-
-namespace Solution.Services;
+﻿namespace Solution.Services;
 
 public class ManufacturerService(AppDbContext dbContext) : IManufacturerService
 {
@@ -15,10 +13,7 @@ public class ManufacturerService(AppDbContext dbContext) : IManufacturerService
             return Error.Conflict(description: "Manufacturer already exists!");
         }
 
-        var manufacturer = new ManufacturerEntity
-        {
-            Name = model.Name
-        };
+        var manufacturer = model.ToEntity();
 
         await dbContext.Manufacturers.AddAsync(manufacturer);
         await dbContext.SaveChangesAsync();
@@ -26,64 +21,39 @@ public class ManufacturerService(AppDbContext dbContext) : IManufacturerService
         return new ManufacturerModel(manufacturer);
     }
 
-    public async Task<ErrorOr<Success>> UpdateAsync(ManufacturerModel model)
+    public async Task<ErrorOr<List<ManufacturerModel>>> GetAllAsync() =>
+        await dbContext.Manufacturers.AsNoTracking()
+                                   .Select(x => new ManufacturerModel(x))
+                                   .ToListAsync();
+
+    public async Task<ErrorOr<ManufacturerModel>> GetByIdAsync(int manufacturerId)
     {
-        var entity = await dbContext.Manufacturers.FindAsync(model.Id);
-        if (entity is null)
-        {
-            return Error.NotFound();
-        }
+        var manufacturer = await dbContext.Manufacturers.FirstOrDefaultAsync(x => x.Id == manufacturerId);
 
-        entity.Name = model.Name;
-        dbContext.Manufacturers.Update(entity);
-        await dbContext.SaveChangesAsync();
-
-        return Result.Success;
-    }
-
-    public async Task<ErrorOr<Success>> DeleteAsync(string manufacturerId)
-    {
-        if (!int.TryParse(manufacturerId, out var id))
-        {
-            return Error.NotFound(description: "Invalid manufacturer ID.");
-        }
-
-        var entity = await dbContext.Manufacturers.FindAsync(id);
-        if (entity is null)
-        {
-            return Error.NotFound();
-        }
-
-        dbContext.Manufacturers.Remove(entity);
-        await dbContext.SaveChangesAsync();
-
-        return Result.Success;
-    }
-
-    public async Task<ErrorOr<ManufacturerModel>> GetByIdAsync(string manufacturerId)
-    {
-        if (!int.TryParse(manufacturerId, out var id))
-        {
-            return Error.NotFound(description: "Invalid manufacturer ID.");
-        }
-
-        var entity = await dbContext.Manufacturers.FindAsync(id);
-        if (entity is null)
+        if (manufacturer is null)
         {
             return Error.NotFound(description: "Manufacturer not found.");
         }
 
-        return new ManufacturerModel(entity);
+        return new ManufacturerModel(manufacturer);
     }
 
-    public async Task<ErrorOr<List<ManufacturerModel>>> GetAllAsync()
+    public async Task<ErrorOr<Success>> UpdateAsync(ManufacturerModel model)
     {
-        var manufacturers = await dbContext.Manufacturers.AsNoTracking()
-                                         .OrderBy(m => m.Name)
-                                         .Select(m => new ManufacturerModel(m))
-                                         .ToListAsync();
+        var result = await dbContext.Manufacturers.AsNoTracking()
+                                                .Where(x => x.Id == model.Id)
+                                                .ExecuteUpdateAsync(x => x.SetProperty(p => p.Name, model.Name));
+                                                                          
+        return result > 0 ? Result.Success : Error.NotFound();
+    }
 
-        return manufacturers;
+    public async Task<ErrorOr<Success>> DeleteAsync(int manufacturerId)
+    {
+        var result = await dbContext.Manufacturers.AsNoTracking()
+                                                .Where(x => x.Id == manufacturerId)
+                                                .ExecuteDeleteAsync();
+
+        return result > 0 ? Result.Success : Error.NotFound();
     }
 
     public async Task<ErrorOr<PaginationModel<ManufacturerModel>>> GetPagedAsync(int page = 0)
@@ -91,11 +61,10 @@ public class ManufacturerService(AppDbContext dbContext) : IManufacturerService
         page = page <= 0 ? 1 : page - 1;
 
         var manufacturers = await dbContext.Manufacturers.AsNoTracking()
-                                         .OrderBy(m => m.Name)
-                                         .Skip(page * ROW_COUNT)
-                                         .Take(ROW_COUNT)
-                                         .Select(m => new ManufacturerModel(m))
-                                         .ToListAsync();
+                                                     .Skip(page * ROW_COUNT)
+                                                     .Take(ROW_COUNT)
+                                                     .Select(x => new ManufacturerModel(x))
+                                                     .ToListAsync();
 
         var paginationModel = new PaginationModel<ManufacturerModel>
         {

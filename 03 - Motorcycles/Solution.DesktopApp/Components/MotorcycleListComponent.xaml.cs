@@ -47,9 +47,9 @@ public partial class MotorcycleListComponent : ContentView
     public IAsyncRelayCommand EditCommand => new AsyncRelayCommand(OnEditAsync);
 
     public MotorcycleListComponent()
-    {
-        InitializeComponent();
-    }
+	{
+		InitializeComponent();
+	}
 
     private async Task OnEditAsync()
     {

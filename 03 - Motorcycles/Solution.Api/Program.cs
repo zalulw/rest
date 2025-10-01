@@ -1,17 +1,13 @@
-using Solution.Api.Configurations;
-
 var builder = WebApplication.CreateBuilder(args);
 
-builder.LoadAppSettings()
+builder.LoadAppSettingsVariables()
        .ConfigureDI()
        .ConfigureDatabase()
        .ConfigureFluentValidation();
 
-
 builder.Services.AddControllers();
 
 var app = builder.Build();
-
 
 app.UseHttpsRedirection();
 app.UseAuthorization();

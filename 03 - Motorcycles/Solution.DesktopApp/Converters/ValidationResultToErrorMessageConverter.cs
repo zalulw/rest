@@ -18,7 +18,7 @@ public class ValidationResultToErrorMessageConverter : IValueConverter
         var errorMessages = validationResult.Errors.Where(x => x.PropertyName == property)
                                                     .Select(x => x.ErrorMessage);
 
-        return string.Join(Environment.NewLine, errorMessages);
+        return string.Join(Environment.NewLine, errorMessages); 
     }
 
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)

@@ -17,7 +17,7 @@ public class MotorcycleService(AppDbContext dbContext) : IMotorcycleService
 
         var motorcycle = model.ToEntity();
         motorcycle.PublicId = Guid.NewGuid().ToString();
-
+        
         await dbContext.Motorcycles.AddAsync(motorcycle);
         await dbContext.SaveChangesAsync();
 
@@ -29,7 +29,7 @@ public class MotorcycleService(AppDbContext dbContext) : IMotorcycleService
 
     public async Task<ErrorOr<Success>> UpdateAsync(MotorcycleModel model)
     {
-        var result = await dbContext.Motorcycles.AsNoTracking()
+        var result = await dbContext.Motorcycles.AsNoTracking() 
                                                 .Where(x => x.PublicId == model.Id)
                                                 .ExecuteUpdateAsync(x => x.SetProperty(p => p.PublicId, model.Id)
                                                                           .SetProperty(p => p.ManufacturerId, model.Manufacturer.Id)

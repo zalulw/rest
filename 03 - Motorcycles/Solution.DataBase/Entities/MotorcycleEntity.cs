@@ -19,10 +19,10 @@ public class MotorcycleEntity
 
     [StringLength(128)]
     [Required]
-    public string Model { get; set; }
+    public string Model {  get; set; }
 
     [Required]
-    public int Cubic { get; set; }
+    public int Cubic {  get; set; }
 
     [Required]
     public int ReleaseYear { get; set; }

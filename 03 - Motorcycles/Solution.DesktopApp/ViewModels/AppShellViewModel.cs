@@ -1,4 +1,6 @@
-﻿namespace Solution.DesktopApp.ViewModels;
+﻿using CommunityToolkit.Mvvm.Input;
+
+namespace Solution.DesktopApp.ViewModels;
 
 [ObservableObject]
 public partial class AppShellViewModel
@@ -7,8 +9,10 @@ public partial class AppShellViewModel
 
     public IAsyncRelayCommand AddNewMotorcycleCommand => new AsyncRelayCommand(OnAddNewMotorcycleAsync);
     public IAsyncRelayCommand ListAllMotorcyclesCommand => new AsyncRelayCommand(OnListAllMotorcyclesAsync);
-    public IAsyncRelayCommand ModifyTypeCommand => new AsyncRelayCommand(OnModifyTypeAsync);
-    public IAsyncRelayCommand ModifyManufacturerCommand => new AsyncRelayCommand(OnModifyManufacturerAsync);
+    public IAsyncRelayCommand AddNewManufacturerCommand => new AsyncRelayCommand(OnAddNewManufacturerAsync);
+    public IAsyncRelayCommand AddNewTypeCommand => new AsyncRelayCommand(OnAddNewTypeAsync);
+    public IAsyncRelayCommand ListAllManufacturersCommand => new AsyncRelayCommand(OnListAllManufacturersAsync);
+    public IAsyncRelayCommand ListAllTypesCommand => new AsyncRelayCommand(OnListAllTypesAsync);
 
 
     private async Task OnExitAsync() => Application.Current.Quit();
@@ -25,15 +29,26 @@ public partial class AppShellViewModel
         await Shell.Current.GoToAsync(MotorcycleListView.Name);
     }
 
-    private async Task OnModifyTypeAsync()
+    private async Task OnAddNewManufacturerAsync()
     {
         Shell.Current.ClearNavigationStack();
-        await Shell.Current.GoToAsync(ModifyTypeView.Name);
+        await Shell.Current.GoToAsync(CreateManufacturerView.Name);
     }
 
-    private async Task OnModifyManufacturerAsync()
+    private async Task OnAddNewTypeAsync()
     {
         Shell.Current.ClearNavigationStack();
-        await Shell.Current.GoToAsync(ModifyManufacturerView.Name);
+        await Shell.Current.GoToAsync(CreateTypeView.Name);
+    }
+
+    private async Task OnListAllManufacturersAsync()
+    {
+        Shell.Current.ClearNavigationStack();
+        await Shell.Current.GoToAsync(ManufacturerListView.Name);
+    }
+    private async Task OnListAllTypesAsync()
+    {
+        Shell.Current.ClearNavigationStack();
+        await Shell.Current.GoToAsync(TypeListView.Name);
     }
 }

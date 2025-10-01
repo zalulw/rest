@@ -1,4 +1,7 @@
-﻿namespace Solution.DesktopApp.ViewModels;
+﻿
+
+
+namespace Solution.DesktopApp.ViewModels;
 
 public partial class CreateOrEditMotorcycleViewModel(
     AppDbContext dbContext,
@@ -48,10 +51,10 @@ public partial class CreateOrEditMotorcycleViewModel(
 
         bool hasValue = query.TryGetValue("Motorcycle", out object result);
 
-        if (!hasValue)
+        if(!hasValue)
         {
             asyncButtonAction = OnSaveAsync;
-            Title = "Add new  motorcycle";
+            Title = "Add new motorcycle";
             return;
         }
 
@@ -67,7 +70,7 @@ public partial class CreateOrEditMotorcycleViewModel(
         this.ImageId = motorcycle.ImageId;
         this.WebContentLink = motorcycle.WebContentLink;
 
-        if (!string.IsNullOrEmpty(motorcycle.WebContentLink))
+        if(!string.IsNullOrEmpty(motorcycle.WebContentLink))
         {
             Image = new UriImageSource
             {
@@ -139,7 +142,7 @@ public partial class CreateOrEditMotorcycleViewModel(
             PickerTitle = "Please select the motorcycle image"
         });
 
-        if (selectedFile is null)
+        if(selectedFile is null)
         {
             return;
         }
@@ -184,7 +187,8 @@ public partial class CreateOrEditMotorcycleViewModel(
 
     private void ClearForm()
     {
-        this.Manufacturer = null;
+        this.Manufacturer = new ManufacturerModel();
+        this.Type = new TypeModel();
         this.Model = null;
         this.Cubic = 0;
         this.ReleaseYear = 0;
@@ -205,6 +209,6 @@ public partial class CreateOrEditMotorcycleViewModel(
         ValidationResult.Errors.Remove(ValidationResult.Errors.FirstOrDefault(x => x.PropertyName == MotorcycleModelValidator.GlobalProperty));
         ValidationResult.Errors.AddRange(result.Errors);
 
-        OnPropertyChanged(nameof(ValidationResult));
+       OnPropertyChanged(nameof(ValidationResult));
     }
 }

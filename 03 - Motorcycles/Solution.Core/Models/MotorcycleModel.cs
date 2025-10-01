@@ -1,8 +1,6 @@
-﻿using Azure.Core.Serialization;
+﻿namespace Solution.Core.Models;
 
-namespace Solution.Core.Models;
-
-public partial class MotorcycleModel : ObservableObject
+public partial class MotorcycleModel : ObservableObject 
 {
     [ObservableProperty]
     [JsonPropertyName("id")]
@@ -42,10 +40,10 @@ public partial class MotorcycleModel : ObservableObject
 
     public MotorcycleModel()
     {
-
+     
     }
 
-    public MotorcycleModel(MotorcycleEntity entity) : this()
+    public MotorcycleModel(MotorcycleEntity entity): this()
     {
         this.Id = entity.PublicId;
         this.ImageId = entity.ImageId;

@@ -1,4 +1,4 @@
-﻿using Solution.Database.Entities;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Solution.Services;
 
@@ -15,10 +15,7 @@ public class TypeService(AppDbContext dbContext) : ITypeService
             return Error.Conflict(description: "Type already exists!");
         }
 
-        var type = new MotorcycleTypeEntity
-        {
-            Name = model.Name
-        };
+        var type = model.ToEntity();
 
         await dbContext.Types.AddAsync(type);
         await dbContext.SaveChangesAsync();
@@ -26,64 +23,39 @@ public class TypeService(AppDbContext dbContext) : ITypeService
         return new TypeModel(type);
     }
 
-    public async Task<ErrorOr<Success>> UpdateAsync(TypeModel model)
+    public async Task<ErrorOr<List<TypeModel>>> GetAllAsync() =>
+        await dbContext.Types.AsNoTracking()
+                             .Select(x => new TypeModel(x))
+                             .ToListAsync();
+
+    public async Task<ErrorOr<TypeModel>> GetByIdAsync(int typeId)
     {
-        var entity = await dbContext.Types.FindAsync(model.Id);
-        if (entity is null)
-        {
-            return Error.NotFound();
-        }
+        var type = await dbContext.Types.FirstOrDefaultAsync(x => x.Id == typeId);
 
-        entity.Name = model.Name;
-        dbContext.Types.Update(entity);
-        await dbContext.SaveChangesAsync();
-
-        return Result.Success;
-    }
-
-    public async Task<ErrorOr<Success>> DeleteAsync(string typeId)
-    {
-        if (!int.TryParse(typeId, out var id))
-        {
-            return Error.NotFound(description: "Invalid type ID.");
-        }
-
-        var entity = await dbContext.Types.FindAsync(id);
-        if (entity is null)
-        {
-            return Error.NotFound();
-        }
-
-        dbContext.Types.Remove(entity);
-        await dbContext.SaveChangesAsync();
-
-        return Result.Success;
-    }
-
-    public async Task<ErrorOr<TypeModel>> GetByIdAsync(string typeId)
-    {
-        if (!int.TryParse(typeId, out var id))
-        {
-            return Error.NotFound(description: "Invalid type ID.");
-        }
-
-        var entity = await dbContext.Types.FindAsync(id);
-        if (entity is null)
+        if (type is null)
         {
             return Error.NotFound(description: "Type not found.");
         }
 
-        return new TypeModel(entity);
+        return new TypeModel(type);
     }
 
-    public async Task<ErrorOr<List<TypeModel>>> GetAllAsync()
+    public async Task<ErrorOr<Success>> UpdateAsync(TypeModel model)
     {
-        var types = await dbContext.Types.AsNoTracking()
-                                         .OrderBy(t => t.Name)
-                                         .Select(t => new TypeModel(t))
-                                         .ToListAsync();
+        var result = await dbContext.Types.AsNoTracking()
+                                                .Where(x => x.Id == model.Id)
+                                                .ExecuteUpdateAsync(x => x.SetProperty(p => p.Name, model.Name));
 
-        return types;
+        return result > 0 ? Result.Success : Error.NotFound();
+    }
+
+    public async Task<ErrorOr<Success>> DeleteAsync(int typeId)
+    {
+        var result = await dbContext.Types.AsNoTracking()
+                                                .Where(x => x.Id == typeId)
+                                                .ExecuteDeleteAsync();
+
+        return result > 0 ? Result.Success : Error.NotFound();
     }
 
     public async Task<ErrorOr<PaginationModel<TypeModel>>> GetPagedAsync(int page = 0)
@@ -91,11 +63,10 @@ public class TypeService(AppDbContext dbContext) : ITypeService
         page = page <= 0 ? 1 : page - 1;
 
         var types = await dbContext.Types.AsNoTracking()
-                                         .OrderBy(t => t.Name)
-                                         .Skip(page * ROW_COUNT)
-                                         .Take(ROW_COUNT)
-                                         .Select(x => new TypeModel(x))
-                                         .ToListAsync();
+                                                     .Skip(page * ROW_COUNT)
+                                                     .Take(ROW_COUNT)
+                                                     .Select(x => new TypeModel(x))
+                                                     .ToListAsync();
 
         var paginationModel = new PaginationModel<TypeModel>
         {
