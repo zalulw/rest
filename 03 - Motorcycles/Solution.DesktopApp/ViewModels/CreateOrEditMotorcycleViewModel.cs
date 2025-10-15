@@ -1,7 +1,4 @@
-﻿
-
-
-namespace Solution.DesktopApp.ViewModels;
+﻿namespace Solution.DesktopApp.ViewModels;
 
 public partial class CreateOrEditMotorcycleViewModel(
     AppDbContext dbContext,
@@ -14,7 +11,7 @@ public partial class CreateOrEditMotorcycleViewModel(
     #endregion
 
     #region validation
-    public IRelayCommand ValidateCommand => new AsyncRelayCommand<string>(OnValidateAsync);
+    public ICommand ValidateCommand => new Command<string>(OnValidateAsync);
     #endregion
 
     #region event commands
@@ -40,6 +37,9 @@ public partial class CreateOrEditMotorcycleViewModel(
     private IList<TypeModel> types = [];
 
     [ObservableProperty]
+    private IList<uint> cylinders = [1, 2, 3, 4, 6, 8];
+
+    [ObservableProperty]
     private ImageSource image;
 
     private FileResult selectedFile = null;
@@ -54,7 +54,7 @@ public partial class CreateOrEditMotorcycleViewModel(
         if(!hasValue)
         {
             asyncButtonAction = OnSaveAsync;
-            Title = "Add new motorcycle";
+            Title = "Add new  motorcycle";
             return;
         }
 
@@ -200,15 +200,15 @@ public partial class CreateOrEditMotorcycleViewModel(
         this.ImageId = null;
     }
 
-    private async Task OnValidateAsync(string propertyName)
+    private async void OnValidateAsync(string propertyName)
     {
         var result = await validator.ValidateAsync(this, options => options.IncludeProperties(propertyName));
 
-        ValidationResult.Errors.Remove(ValidationResult.Errors.FirstOrDefault(x => propertyName == propertyName));
+        ValidationResult.Errors.Remove(ValidationResult.Errors.FirstOrDefault(x => x.PropertyName == propertyName));
 
         ValidationResult.Errors.Remove(ValidationResult.Errors.FirstOrDefault(x => x.PropertyName == MotorcycleModelValidator.GlobalProperty));
         ValidationResult.Errors.AddRange(result.Errors);
 
-       OnPropertyChanged(nameof(ValidationResult));
+        OnPropertyChanged(nameof(ValidationResult));
     }
 }

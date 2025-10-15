@@ -6,7 +6,7 @@ public class GoogleDriveService(GoogleDriveSettings googleDriveSettings) : IGoog
     {
         var service = CreateGoogleDriveService();
 
-        if (service is null)
+        if(service is null)
         {
             return Error.NotFound(description: "Google Drive Service is down");
         }
@@ -23,11 +23,11 @@ public class GoogleDriveService(GoogleDriveSettings googleDriveSettings) : IGoog
 
         var response = service.Files.Create(fileMetaData, stream, file.ContentType);
         response.Fields = "id,webContentLink";
-        var uploadResponse = await response.UploadAsync();
+        await response.UploadAsync();
 
-        if (uploadResponse.Status == Google.Apis.Upload.UploadStatus.Failed)
+        if (response?.ResponseBody?.Id is null)
         {
-            return Error.NotFound(description: $"Google Drive Service is down. {uploadResponse.Exception?.Message}");
+            return Error.NotFound(description: "Google Drive Service is down");
         }
 
         var uploadedFile = response.ResponseBody;

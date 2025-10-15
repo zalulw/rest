@@ -39,7 +39,7 @@ namespace Solution.Database.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Manufacturer");
+                    b.ToTable("Manufacturer", (string)null);
                 });
 
             modelBuilder.Entity("Solution.Database.Entities.MotorcycleEntity", b =>
@@ -89,7 +89,7 @@ namespace Solution.Database.Migrations
 
                     b.HasIndex("TypeId");
 
-                    b.ToTable("Motorcycle");
+                    b.ToTable("Motorcycle", (string)null);
                 });
 
             modelBuilder.Entity("Solution.Database.Entities.MotorcycleTypeEntity", b =>
@@ -110,7 +110,7 @@ namespace Solution.Database.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Type");
+                    b.ToTable("Type", (string)null);
                 });
 
             modelBuilder.Entity("Solution.Database.Entities.MotorcycleEntity", b =>

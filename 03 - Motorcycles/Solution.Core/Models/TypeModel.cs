@@ -3,51 +3,42 @@
 public partial class TypeModel : ObservableObject
 {
     [ObservableProperty]
+    [JsonPropertyName("id")]
     private int id;
 
     [ObservableProperty]
+    [JsonPropertyName("name")]
     private string name;
 
     public TypeModel()
     {
     }
 
-    public TypeModel(int id, string name)
-    {
-        Id = id;
-        Name = name;
-    }
-
     public TypeModel(MotorcycleTypeEntity entity)
     {
-        if (entity is null)
-        {
-            return;
-        }
-
-        Id = entity.Id;
-        Name = entity.Name;
+        this.Id = entity.Id;
+        this.Name = entity.Name;
     }
 
     public MotorcycleTypeEntity ToEntity()
     {
         return new MotorcycleTypeEntity
         {
-            Name = Name,
-            Id = Id
+            Id = Id,
+            Name = Name
         };
     }
 
     public void ToEntity(MotorcycleTypeEntity entity)
     {
-        entity.Name = Name;
         entity.Id = Id;
+        entity.Name = Name;
     }
 
     public override bool Equals(object? obj)
     {
         return obj is TypeModel model &&
-               Id == model.Id &&
-               Name == model.Name;  
+               this.Id == model.Id &&
+               this.Name == model.Name;
     }
 }

@@ -7,7 +7,7 @@ public static class ConfigureAppVariables
 #if DEBUG
         var file = "appSettings.Development.json";
 #else
-        var file = "connectionString.Production.json";
+        var file = "appSettings.Production.json";
 #endif
         var stream = new MemoryStream(File.ReadAllBytes($"{file}"));
 

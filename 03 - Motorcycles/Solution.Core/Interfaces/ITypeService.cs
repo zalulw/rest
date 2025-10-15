@@ -9,3 +9,5 @@ public interface ITypeService
     Task<ErrorOr<List<TypeModel>>> GetAllAsync();
     Task<ErrorOr<PaginationModel<TypeModel>>> GetPagedAsync(int page = 0);
 }
+
+

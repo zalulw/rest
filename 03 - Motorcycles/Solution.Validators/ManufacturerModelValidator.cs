@@ -1,14 +1,21 @@
-﻿
+﻿using Microsoft.AspNetCore.Http;
+using Solution.Database.Migrations;
+
 namespace Solution.Validators;
 
-public class ManufacturerModelValidator : AbstractValidator<ManufacturerModel>
+public class ManufacturerModelValidator : BaseValidator<ManufacturerModel>
 {
     public static string NameProperty => nameof(ManufacturerModel.Name);
     public static string GlobalProperty => "Global";
 
-    public ManufacturerModelValidator()
+    public ManufacturerModelValidator(IHttpContextAccessor httpContextAccessor = null) : base(httpContextAccessor)
     {
-        RuleFor(x => x.Name).NotEmpty().WithMessage("Manufacturer name is required!");
-    }
+        if (IsPutMethod)
+        {
+            RuleFor(x => x.Id).NotEmpty().WithMessage("Id is required");
+        }
 
+        RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required");
+    }
 }
+

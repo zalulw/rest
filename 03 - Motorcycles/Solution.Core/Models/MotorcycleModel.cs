@@ -1,6 +1,6 @@
 ﻿namespace Solution.Core.Models;
 
-public partial class MotorcycleModel : ObservableObject 
+public partial class MotorcycleModel: ObservableObject
 {
     [ObservableProperty]
     [JsonPropertyName("id")]
@@ -19,7 +19,7 @@ public partial class MotorcycleModel : ObservableObject
     private ManufacturerModel manufacturer;
 
     [ObservableProperty]
-    [JsonPropertyName("type")]
+    [JsonPropertyName("")]
     private TypeModel type;
 
     [ObservableProperty]
@@ -27,11 +27,10 @@ public partial class MotorcycleModel : ObservableObject
     private string model;
 
     [ObservableProperty]
-    [JsonPropertyName("cubic")]
+    [JsonPropertyName("releaseYear")]
     private int? cubic;
 
     [ObservableProperty]
-    [JsonPropertyName("releaseYear")]
     private int? releaseYear;
 
     [ObservableProperty]
@@ -40,10 +39,9 @@ public partial class MotorcycleModel : ObservableObject
 
     public MotorcycleModel()
     {
-     
     }
 
-    public MotorcycleModel(MotorcycleEntity entity): this()
+    public MotorcycleModel(MotorcycleEntity entity)
     {
         this.Id = entity.PublicId;
         this.ImageId = entity.ImageId;
@@ -84,7 +82,4 @@ public partial class MotorcycleModel : ObservableObject
         entity.ReleaseYear = ReleaseYear.Value;
         entity.Cylinders = NumberOfCylinders.Value;
     }
-
-
 }
-

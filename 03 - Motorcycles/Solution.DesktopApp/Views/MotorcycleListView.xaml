@@ -10,8 +10,13 @@
              x:Name="this">
 
     <ContentPage.Behaviors>
-        <toolkit:EventToCommandBehavior Command="{Binding AppearingCommand}" EventName="Appearing" BindingContext="{Binding Source={x:Reference this}, Path=BindingContext}"/>
-        <toolkit:EventToCommandBehavior Command="{Binding DisappearingCommand}" EventName="Disappearing" BindingContext="{Binding Source={x:Reference this}, Path=BindingContext}"/>
+        <toolkit:EventToCommandBehavior Command="{Binding AppearingCommand}"
+                                        EventName="Appearing"
+                                        BindingContext="{Binding Source={x:Reference this}, Path=BindingContext}"/>
+        
+        <toolkit:EventToCommandBehavior Command="{Binding DisappearingCommand}"
+                                        EventName="Disappearing" 
+                                        BindingContext="{Binding Source={x:Reference this}, Path=BindingContext}"/>
     </ContentPage.Behaviors>
 
     <Grid>

@@ -8,10 +8,15 @@
              xmlns:models="clr-namespace:Solution.Core.Models;assembly=Solution.Core"
              x:DataType="viewModels:ManufacturerListViewModel"
              x:Name="this">
-    
+
     <ContentPage.Behaviors>
-        <toolkit:EventToCommandBehavior Command="{Binding AppearingCommand}" EventName="Appearing" BindingContext="{Binding Source={x:Reference this}, Path=BindingContext}"/>
-        <toolkit:EventToCommandBehavior Command="{Binding DisappearingCommand}" EventName="Disappearing" BindingContext="{Binding Source={x:Reference this}, Path=BindingContext}"/>
+        <toolkit:EventToCommandBehavior Command="{Binding AppearingCommand}"
+                                        EventName="Appearing"
+                                        BindingContext="{Binding Source={x:Reference this}, Path=BindingContext}"/>
+
+        <toolkit:EventToCommandBehavior Command="{Binding DisappearingCommand}"
+                                        EventName="Disappearing" 
+                                        BindingContext="{Binding Source={x:Reference this}, Path=BindingContext}"/>
     </ContentPage.Behaviors>
 
     <Grid>
@@ -21,8 +26,8 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0"
-       Text="MANUFACTURERS"
-       Style="{x:StaticResource PageTitle}" />
+               Text="Manufacturers"
+               Style="{x:StaticResource PageTitle}" />
 
         <ScrollView Grid.Row="1">
             <CollectionView ItemsSource="{Binding Manufacturers}" Margin="50,0,50,0">
@@ -34,12 +39,19 @@
                             <ColumnDefinition Width="80" />
                             <ColumnDefinition Width="80" />
                         </Grid.ColumnDefinitions>
-                        
-                        <Label Grid.Column="0"
-                       Text="Name"
-                       HorizontalTextAlignment="Center"
-                       Style="{x:StaticResource TableHeader}" />
 
+                        <Label Grid.Column="0"
+                               Text="Name"
+                               HorizontalTextAlignment="Center"
+                               Style="{x:StaticResource TableHeader}" />
+                        <Label Grid.Column="1"
+                               Text="Edit"
+                               HorizontalTextAlignment="Center"
+                               Style="{x:StaticResource TableHeader}" />
+                        <Label Grid.Column="2"
+                               Text="Delete"
+                               HorizontalTextAlignment="Center"
+                               Style="{x:StaticResource TableHeader}" />
                     </Grid>
                 </CollectionView.Header>
                 <CollectionView.ItemsLayout>
@@ -48,8 +60,8 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:ManufacturerModel">
                         <components:ManufacturerListComponent Manufacturer="{Binding .}"
-                                            DeleteCommand="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ManufacturerListViewModel}}, Path=DeleteCommand}"
-                                            CommandParameter="{Binding Id}"/>
+                                                            DeleteCommand="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ManufacturerListViewModel}}, Path=DeleteCommand}"
+                                                            CommandParameter="{Binding Id}"/>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
                 <CollectionView.Footer>
@@ -61,5 +73,6 @@
                 </CollectionView.Footer>
             </CollectionView>
         </ScrollView>
+
     </Grid>
 </ContentPage>

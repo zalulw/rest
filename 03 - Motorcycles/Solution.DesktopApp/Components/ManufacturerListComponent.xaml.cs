@@ -1,3 +1,6 @@
+using Solution.Core.Models;
+using Solution.Database.Migrations;
+
 namespace Solution.DesktopApp.Components;
 
 public partial class ManufacturerListComponent : ContentView
@@ -11,7 +14,7 @@ public partial class ManufacturerListComponent : ContentView
     );
 
     public ManufacturerModel Manufacturer
-    {
+    { 
         get => (ManufacturerModel)GetValue(ManufacturerProperty);
         set => SetValue(ManufacturerProperty, value);
     }
@@ -59,6 +62,6 @@ public partial class ManufacturerListComponent : ContentView
         };
 
         Shell.Current.ClearNavigationStack();
-        await Shell.Current.GoToAsync(CreateManufacturerView.Name, navigationQueryParameter);
+        await Shell.Current.GoToAsync(AddManufacturerView.Name, navigationQueryParameter);
     }
 }

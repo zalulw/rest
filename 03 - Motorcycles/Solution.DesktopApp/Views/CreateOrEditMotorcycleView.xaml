@@ -34,184 +34,177 @@
                     HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Image Source="{Binding Image}" />
             </Border>
-            <Button Text="Please select an image"
+            <Button Text="Plese select an image"
                     Margin="0,5"
                     Command="{Binding ImageSelectCommand}" />
         </StackLayout>
 
-        <StackLayout Orientation="Vertical" Grid.Column="1">
+        <StackLayout Orientation="Vertical" Grid.Column="1" Margin="0,0,40,0">
             <Label Text="{Binding Title}" Style="{StaticResource PageTitle}" />
 
-            <sf:SfTextInputLayout Hint="Manufacturer"
-                                  ContainerType="Outlined"
-                                  OutlineCornerRadius="8"
-                                  ErrorText="{
-                                              Binding ValidationResult,
-                                              Converter={StaticResource ValidatioNResultToErrorMessageConverter},
-                                              ConverterParameter={x:Static validator:MotorcycleModelValidator.ManufacturerProperty}
-                                            }"
-                                  HasError="{
-                                             Binding ValidationResult,
-                                             Converter={StaticResource ValidationResultToHasErrorConverter},
-                                             ConverterParameter={x:Static validator:MotorcycleModelValidator.ManufacturerProperty}
-                                            }">
+            <sf:SfTextInputLayout
+                Hint="Manufacturer"
+                ContainerType="Outlined"
+                OutlineCornerRadius="8"
+                ErrorText="{
+                    Binding ValidationResult, 
+                    Converter={StaticResource ValidationResultToErrorMessagesConverter}, 
+                    ConverterParameter={x:Static validator:MotorcycleModelValidator.ManufacturerProperty}
+                }"
+                HasError="{
+                    Binding ValidationResult, 
+                    Converter={StaticResource ValidationResultToHasErrorConverter}, 
+                    ConverterParameter={x:Static validator:MotorcycleModelValidator.ManufacturerProperty}
+                }">
+
                 <Picker ItemsSource="{Binding Manufacturers}"
                         ItemDisplayBinding="{Binding Name}"
                         SelectedItem="{Binding Manufacturer}">
                     <Picker.Behaviors>
                         <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged"
-                                                    BindingContext="{Binding Source={x:Reference this}, Path=BindingContext}"
-                                                    Command="{Binding ValidateCommand}"
-                                                    CommandParameter="{x:Static validator:MotorcycleModelValidator.ManufacturerProperty}"/>
+                                                        BindingContext="{Binding Source={x:Reference this}, Path=BindingContext}"
+                                                        Command="{Binding ValidateCommand}" 
+                                                        CommandParameter="{x:Static validator:MotorcycleModelValidator.ManufacturerProperty}" />
                     </Picker.Behaviors>
                 </Picker>
             </sf:SfTextInputLayout>
 
-            <sf:SfTextInputLayout Hint="Type"
-                      ContainerType="Outlined"
-                      OutlineCornerRadius="8"
-                      ErrorText="{
-                                  Binding ValidationResult,
-                                  Converter={StaticResource ValidatioNResultToErrorMessageConverter},
-                                  ConverterParameter={x:Static validator:MotorcycleModelValidator.TypeProperty}
-                                }"
-                      HasError="{
-                                 Binding ValidationResult,
-                                 Converter={StaticResource ValidationResultToHasErrorConverter},
-                                 ConverterParameter={x:Static validator:MotorcycleModelValidator.TypeProperty}
-                                }">
+            <sf:SfTextInputLayout
+                Hint="Type"
+                ContainerType="Outlined"
+                OutlineCornerRadius="8"
+                ErrorText="{
+                    Binding ValidationResult, 
+                    Converter={StaticResource ValidationResultToErrorMessagesConverter}, 
+                    ConverterParameter={x:Static validator:MotorcycleModelValidator.TypeProperty}
+                }"
+                HasError="{
+                    Binding ValidationResult, 
+                    Converter={StaticResource ValidationResultToHasErrorConverter}, 
+                    ConverterParameter={x:Static validator:MotorcycleModelValidator.TypeProperty}
+                }">
+
                 <Picker ItemsSource="{Binding Types}"
-            ItemDisplayBinding="{Binding Name}"
-            SelectedItem="{Binding Type}">
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedItem="{Binding Type}">
                     <Picker.Behaviors>
-                        <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged"
-                                        BindingContext="{Binding Source={x:Reference this}, Path=BindingContext}"
-                                        Command="{Binding ValidateCommand}"
-                                        CommandParameter="{x:Static validator:MotorcycleModelValidator.TypeProperty}"/>
+                        <toolkit:EventToCommandBehavior
+                            EventName="SelectedIndexChanged"
+                            BindingContext="{Binding Source={x:Reference this}, Path=BindingContext}"
+                            Command="{Binding ValidateCommand}" 
+                            CommandParameter="{x:Static validator:MotorcycleModelValidator.TypeProperty}" />
                     </Picker.Behaviors>
                 </Picker>
             </sf:SfTextInputLayout>
 
-            <sf:SfTextInputLayout Hint="Model"
-              ContainerType="Outlined"
-              OutlineCornerRadius="8"
-              ErrorText="{
-                            Binding ValidationResult,
-                            Converter={StaticResource ValidatioNResultToErrorMessageConverter},
-                            ConverterParameter={x:Static validator:MotorcycleModelValidator.ModelProperty}
-            }"
-              HasError="{
-                            Binding ValidationResult,
-                            Converter={StaticResource ValidationResultToHasErrorConverter},
-                            ConverterParameter={x:Static validator:MotorcycleModelValidator.ModelProperty}
-            }">
+            <sf:SfTextInputLayout
+                Hint="Model"
+                ContainerType="Outlined"
+                OutlineCornerRadius="8"
+                ErrorText="{
+                    Binding ValidationResult, 
+                    Converter={StaticResource ValidationResultToErrorMessagesConverter}, 
+                    ConverterParameter={x:Static validator:MotorcycleModelValidator.ModelProperty}
+                }"
+                HasError="{
+                    Binding ValidationResult, 
+                    Converter={StaticResource ValidationResultToHasErrorConverter}, 
+                    ConverterParameter={x:Static validator:MotorcycleModelValidator.ModelProperty}
+                }">
 
                 <Entry Text="{Binding Model}">
                     <Entry.Behaviors>
-                        <toolkit:EventToCommandBehavior EventName="TextChanged"
-                                                        BindingContext="{Binding Source={x:Reference this}, Path=BindingContext}"
-                                                        Command="{Binding ValidateCommand}"
-                                                        CommandParameter="{x:Static validator:MotorcycleModelValidator.ModelProperty}"/>
+                        <toolkit:EventToCommandBehavior
+                            EventName="TextChanged"
+                            BindingContext="{Binding Source={x:Reference this}, Path=BindingContext}"
+                            Command="{Binding ValidateCommand}" 
+                            CommandParameter="{x:Static validator:MotorcycleModelValidator.ModelProperty}" />
                     </Entry.Behaviors>
-
                 </Entry>
-
             </sf:SfTextInputLayout>
 
-            <sf:SfTextInputLayout Hint="Cubic"
-                        ContainerType="Outlined"
-                        OutlineCornerRadius="8"
-                        ErrorText="{
-                      Binding ValidationResult,
-                      Converter={StaticResource ValidatioNResultToErrorMessageConverter},
-                      ConverterParameter={x:Static validator:MotorcycleModelValidator.CubicProperty}
-                    }"
-                        HasError="{
-                     Binding ValidationResult,
-                     Converter={StaticResource ValidationResultToHasErrorConverter},
-                     ConverterParameter={x:Static validator:MotorcycleModelValidator.CubicProperty}
-                    }">
-
+            <sf:SfTextInputLayout
+                Hint="Cubic"
+                ContainerType="Outlined"
+                OutlineCornerRadius="8"
+                ErrorText="{
+                    Binding ValidationResult, 
+                    Converter={StaticResource ValidationResultToErrorMessagesConverter}, 
+                    ConverterParameter={x:Static validator:MotorcycleModelValidator.CubicProperty}
+                }"
+                HasError="{
+                    Binding ValidationResult, 
+                    Converter={StaticResource ValidationResultToHasErrorConverter}, 
+                    ConverterParameter={x:Static validator:MotorcycleModelValidator.CubicProperty}
+                }">
                 <editors:SfNumericEntry
                     Value="{Binding Cubic}"
                     ShowClearButton="True"
                     CustomFormat="N0">
                     <editors:SfNumericEntry.Behaviors>
-                        <toolkit:EventToCommandBehavior EventName="ValueChanged"
-                                        BindingContext="{Binding Source={x:Reference this}, Path=BindingContext}"
-                                        Command="{Binding ValidateCommand}"
-                                        CommandParameter="{x:Static validator:MotorcycleModelValidator.CubicProperty}"/>
+                        <toolkit:EventToCommandBehavior 
+                            EventName="ValueChanged"
+                            BindingContext="{Binding Source={x:Reference this}, Path=BindingContext}"
+                            Command="{Binding ValidateCommand}" 
+                            CommandParameter="{x:Static validator:MotorcycleModelValidator.CubicProperty}" />
                     </editors:SfNumericEntry.Behaviors>
-
                 </editors:SfNumericEntry>
             </sf:SfTextInputLayout>
 
-
-            <sf:SfTextInputLayout Hint="Release year"
-                        ContainerType="Outlined"
-                        OutlineCornerRadius="8"
-                        ErrorText="{
-                    Binding ValidationResult,
-                    Converter={StaticResource ValidatioNResultToErrorMessageConverter},
-                    ConverterParameter={x:Static validator:MotorcycleModelValidator.ReleaseYearProperty}
-          }"
-                        HasError="{
-                    Binding ValidationResult,
-                    Converter={StaticResource ValidationResultToHasErrorConverter},
-                    ConverterParameter={x:Static validator:MotorcycleModelValidator.ReleaseYearProperty}
-          }">
-
+            <sf:SfTextInputLayout
+                Hint="Number of Cylinders"
+                ContainerType="Outlined"
+                OutlineCornerRadius="8"
+                ErrorText="{
+                    Binding ValidationResult, 
+                    Converter={StaticResource ValidationResultToErrorMessagesConverter}, 
+                    ConverterParameter={x:Static validator:MotorcycleModelValidator.NumberOfCylindersProperty}
+                }"
+                HasError="{
+                    Binding ValidationResult, 
+                    Converter={StaticResource ValidationResultToHasErrorConverter}, 
+                    ConverterParameter={x:Static validator:MotorcycleModelValidator.NumberOfCylindersProperty}
+                }">
                 <editors:SfNumericEntry
-                        Value="{Binding ReleaseYear}"
-                        ShowClearButton="True"
-                        CustomFormat="N0">
+                    Value="{Binding NumberOfCylinders}"
+                    ShowClearButton="True"
+                    CustomFormat="N0">
+                    <editors:SfNumericEntry.Behaviors>
+                        <toolkit:EventToCommandBehavior 
+                            EventName="ValueChanged"
+                            BindingContext="{Binding Source={x:Reference this}, Path=BindingContext}"
+                            Command="{Binding ValidateCommand}" 
+                            CommandParameter="{x:Static validator:MotorcycleModelValidator.NumberOfCylindersProperty}" />
+                    </editors:SfNumericEntry.Behaviors>
+                </editors:SfNumericEntry>
+            </sf:SfTextInputLayout>
+
+            <sf:SfTextInputLayout
+                Hint="Release Year"
+                ContainerType="Outlined"
+                OutlineCornerRadius="8"
+                ErrorText="{
+                    Binding ValidationResult, 
+                    Converter={StaticResource ValidationResultToErrorMessagesConverter}, 
+                    ConverterParameter={x:Static validator:MotorcycleModelValidator.ReleaseYearProperty}
+                }"
+                HasError="{
+                    Binding ValidationResult, 
+                    Converter={StaticResource ValidationResultToHasErrorConverter}, 
+                    ConverterParameter={x:Static validator:MotorcycleModelValidator.ReleaseYearProperty}
+                }">
+                <editors:SfNumericEntry
+                    Value="{Binding ReleaseYear}"
+                    ShowClearButton="True"
+                    CustomFormat="N0">
                     <editors:SfNumericEntry.Behaviors>
                         <toolkit:EventToCommandBehavior EventName="ValueChanged"
-                        BindingContext="{Binding Source={x:Reference this}, Path=BindingContext}"
-                        Command="{Binding ValidateCommand}"
-                        CommandParameter="{x:Static validator:MotorcycleModelValidator.ReleaseYearProperty}"/>
+                                         BindingContext="{Binding Source={x:Reference this}, Path=BindingContext}"
+                                         Command="{Binding ValidateCommand}" 
+                                         CommandParameter="{x:Static validator:MotorcycleModelValidator.ReleaseYearProperty}" />
                     </editors:SfNumericEntry.Behaviors>
-
                 </editors:SfNumericEntry>
-
             </sf:SfTextInputLayout>
-
-            <sf:SfTextInputLayout Hint="Number of cylinders"
-                        ContainerType="Outlined"
-                        OutlineCornerRadius="8"
-                        ErrorText="{
-                Binding ValidationResult,
-                Converter={StaticResource ValidatioNResultToErrorMessageConverter},
-                ConverterParameter={x:Static validator:MotorcycleModelValidator.NumberOfCylindersProperty}
-          }"
-                        HasError="{
-                Binding ValidationResult,
-                Converter={StaticResource ValidationResultToHasErrorConverter},
-                ConverterParameter={x:Static validator:MotorcycleModelValidator.NumberOfCylindersProperty}
-          }">
-                <Picker 
-                        ItemDisplayBinding="{Binding .}"
-                        SelectedItem="{Binding NumberOfCylinders}">
-                    <Picker.Behaviors>
-                        <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged"
-                            BindingContext="{Binding Source={x:Reference this}, Path=BindingContext}"
-                            Command="{Binding ValidateCommand}"
-                            CommandParameter="{x:Static validator:MotorcycleModelValidator.NumberOfCylindersProperty}"/>
-                    </Picker.Behaviors>
-                    <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:Int32}">
-                        <x:Int32>1</x:Int32>
-                        <x:Int32>2</x:Int32>
-                        <x:Int32>3</x:Int32>
-                        <x:Int32>4</x:Int32>
-                        <x:Int32>6</x:Int32>
-                        <x:Int32>8</x:Int32>
-                    </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
-
-            </sf:SfTextInputLayout>
-
 
             <VerticalStackLayout Style="{StaticResource FormLineContainer}">
                 <Button Text="Submit" Command="{Binding SubmitCommand}" WidthRequest="250"/>

@@ -11,31 +11,31 @@ namespace Solution.Database.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             var query = @$"
-                insert into
-                    [Type]
-                    ([Name])
-                values
-                    ('Chopper'),
-                    ('Crusier'),
-                    ('Classic'),
-                    ('Veteran'),
-                    ('Cross'),
-                    ('Pitpike'),
-                    ('Enduro'),
-                    ('Kidkmotor'),
-                    ('Sport'),
-                    ('Quad'),
-                    ('ATV'),
-                    ('RUV'),
-                    ('SSV'),
-                    ('UTV'),
-                    ('Scooter'),
-                    ('Moped'),
-                    ('Supermoto'),
-                    ('Trial'),
-                    ('Trike'),
-                    ('Tour'),
-                    ('Naked')
+            insert into
+                [Type]
+                ([Name])
+            values
+                ('Chopper'),
+                ('Crusier'),
+                ('Classic'),
+                ('Veteran'),
+                ('Cross'),
+                ('Pitpike'),
+                ('Enduro'),
+                ('Kidkmotor'),
+                ('Sport'),
+                ('Quad'),
+                ('ATV'),
+                ('RUV'),
+                ('SSV'),
+                ('UTV'),
+                ('Scooter'),
+                ('Moped'),
+                ('Supermoto'),
+                ('Trial'),
+                ('Trike'),
+                ('Tour'),
+                ('Naked')
             ";
 
             migrationBuilder.Sql(query);

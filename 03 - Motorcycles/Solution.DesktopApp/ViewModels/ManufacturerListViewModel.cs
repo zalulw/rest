@@ -30,7 +30,7 @@ public partial class ManufacturerListViewModel(IManufacturerService manufacturer
         PreviousPageCommand = new Command(async () => await OnPreviousPageAsync(), () => page > 1 && !isLoading);
         NextPageCommand = new Command(async () => await OnNextPageAsync(), () => !isLoading && hasNextPage);
 
-        await LoadManufacturersAsync();
+        await LoadMTypesAsync();
     }
 
     private async Task OnDisappearingAsync()
@@ -41,7 +41,7 @@ public partial class ManufacturerListViewModel(IManufacturerService manufacturer
         if (isLoading) return;
 
         page = page <= 1 ? 1 : --page;
-        await LoadManufacturersAsync();
+        await LoadMTypesAsync();
     }
 
     private async Task OnNextPageAsync()
@@ -49,10 +49,10 @@ public partial class ManufacturerListViewModel(IManufacturerService manufacturer
         if (isLoading) return;
 
         page++;
-        await LoadManufacturersAsync();
+        await LoadMTypesAsync();
     }
 
-    private async Task LoadManufacturersAsync()
+    private async Task LoadMTypesAsync()
     {
         isLoading = true;
 
@@ -83,12 +83,12 @@ public partial class ManufacturerListViewModel(IManufacturerService manufacturer
 
         if (!result.IsError)
         {
-            var motorcycle = manufacturers.SingleOrDefault(x => x.Id == id);
-            manufacturers.Remove(motorcycle);
+            var type = manufacturers.SingleOrDefault(x => x.Id == id);
+            manufacturers.Remove(type);
 
             if (manufacturers.Count == 0)
             {
-                await LoadManufacturersAsync();
+                await LoadMTypesAsync();
             }
         }
 

@@ -9,8 +9,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 	public DbSet<MotorcycleTypeEntity> Types { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        base.OnConfiguring(optionsBuilder);
-    }  
-
+	{
+		base.OnConfiguring(optionsBuilder);
+	}
 }

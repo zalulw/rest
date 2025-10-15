@@ -83,10 +83,6 @@
 		<PackageReference Include="Google.Apis" Version="1.70.0" />
 		<PackageReference Include="Google.Apis.Auth" Version="1.70.0" />
 		<PackageReference Include="Google.Apis.Drive.v3" Version="1.70.0.3893" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.9" />
-		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.9" />
-		<PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.1" />
-		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.9" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.9" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="9.0.9" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="9.0.9" />
@@ -100,6 +96,7 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.9" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.9" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.9" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.9" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.110" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.9" />
 		<PackageReference Include="Microsoft.Maui.Essentials" Version="9.0.110" />
@@ -116,8 +113,20 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Components\ManufacturerListComponent.xaml.cs">
+	    <DependentUpon>ManufacturerListComponent.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Components\TypeListComponent.xaml.cs">
+	    <DependentUpon>TypeListComponent.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ManufacturerListView.xaml.cs">
+	    <DependentUpon>ManufacturerListView.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\MainView.xaml.cs">
 	    <DependentUpon>MainView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TypeListView.xaml.cs">
+	    <DependentUpon>TypeListView.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -125,28 +134,28 @@
 	  <MauiXaml Update="Components\ManufacturerListComponent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Components\MotorcycleListComponent.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Components\TypeListComponent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\CreateManufacturerView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CreateOrEditMotorcycleView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CreateTypeView.xaml">
+	  <MauiXaml Update="Components\MotorcycleListComponent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ManufacturerListView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\MotorcycleListView.xaml">
+	  <MauiXaml Update="Views\AddManufacturerView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AddTypeView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CreateOrEditMotorcycleView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\TypeListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MotorcycleListView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

@@ -47,9 +47,9 @@ public partial class TypeListComponent : ContentView
     public IAsyncRelayCommand EditCommand => new AsyncRelayCommand(OnEditAsync);
 
     public TypeListComponent()
-    {
-        InitializeComponent();
-    }
+	{
+		InitializeComponent();
+	}
 
     private async Task OnEditAsync()
     {
@@ -59,6 +59,6 @@ public partial class TypeListComponent : ContentView
         };
 
         Shell.Current.ClearNavigationStack();
-        await Shell.Current.GoToAsync(CreateTypeView.Name, navigationQueryParameter);
+        await Shell.Current.GoToAsync(AddTypeView.Name, navigationQueryParameter);
     }
 }

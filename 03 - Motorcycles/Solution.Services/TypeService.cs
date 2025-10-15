@@ -1,9 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-
+﻿
 namespace Solution.Services;
 
 public class TypeService(AppDbContext dbContext) : ITypeService
-{
+{  
     private const int ROW_COUNT = 10;
 
     public async Task<ErrorOr<TypeModel>> CreateAsync(TypeModel model)
@@ -20,24 +19,10 @@ public class TypeService(AppDbContext dbContext) : ITypeService
         await dbContext.Types.AddAsync(type);
         await dbContext.SaveChangesAsync();
 
-        return new TypeModel(type);
-    }
-
-    public async Task<ErrorOr<List<TypeModel>>> GetAllAsync() =>
-        await dbContext.Types.AsNoTracking()
-                             .Select(x => new TypeModel(x))
-                             .ToListAsync();
-
-    public async Task<ErrorOr<TypeModel>> GetByIdAsync(int typeId)
-    {
-        var type = await dbContext.Types.FirstOrDefaultAsync(x => x.Id == typeId);
-
-        if (type is null)
+        return new TypeModel(type)
         {
-            return Error.NotFound(description: "Type not found.");
-        }
-
-        return new TypeModel(type);
+            Name = model.Name
+        };
     }
 
     public async Task<ErrorOr<Success>> UpdateAsync(TypeModel model)
@@ -58,6 +43,23 @@ public class TypeService(AppDbContext dbContext) : ITypeService
         return result > 0 ? Result.Success : Error.NotFound();
     }
 
+    public async Task<ErrorOr<TypeModel>> GetByIdAsync(int typeId)
+    {
+        var type = await dbContext.Types.FirstOrDefaultAsync(x => x.Id == typeId);
+
+        if (type is null)
+        {
+            return Error.NotFound(description: "Type not found.");
+        }
+
+        return new TypeModel(type);
+    }
+
+    public async Task<ErrorOr<List<TypeModel>>> GetAllAsync() =>
+        await dbContext.Types.AsNoTracking()
+                                   .Select(x => new TypeModel(x))
+                                   .ToListAsync();
+
     public async Task<ErrorOr<PaginationModel<TypeModel>>> GetPagedAsync(int page = 0)
     {
         page = page <= 0 ? 1 : page - 1;
@@ -77,3 +79,4 @@ public class TypeService(AppDbContext dbContext) : ITypeService
         return paginationModel;
     }
 }
+

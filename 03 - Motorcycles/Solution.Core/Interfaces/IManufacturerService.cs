@@ -9,3 +9,4 @@ public interface IManufacturerService
     Task<ErrorOr<List<ManufacturerModel>>> GetAllAsync();
     Task<ErrorOr<PaginationModel<ManufacturerModel>>> GetPagedAsync(int page = 0);
 }
+
