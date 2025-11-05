@@ -1,0 +1,8 @@
+﻿using System.Reflection;
+
+namespace Solution.Database;
+
+public static class AssemblyReference
+{
+    public static readonly Assembly Assembly = typeof(AssemblyReference).Assembly;
+}
