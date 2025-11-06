@@ -10,5 +10,5 @@ public class AccountEntity
     [Required]
     public DateTime InvoiceDate { get; set; }
 
-    public virtual ICollection<InvoiceItemEntity> InvoiceItems { get; set; };
+    public virtual ICollection<InvoiceItemEntity> InvoiceItems { get; set; }
 }

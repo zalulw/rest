@@ -2,9 +2,9 @@
 
 public class AppDbContext(DbContextOptions<AppDbContext> options): DbContext(options)
 {
-    DbSet<AccountEntity> Accounts { get; set; }
+    public DbSet<AccountEntity> Accounts { get; set; }
 
-    DbSet<InvoiceItemEntity> InvoiceItems { get; set; }
+    public DbSet<InvoiceItemEntity> InvoiceItems { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
