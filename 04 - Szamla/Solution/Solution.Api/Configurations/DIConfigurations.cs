@@ -1,4 +1,5 @@
 ﻿using Solution.Services;
+using Solution.Services.Account.Interfaces;
 using Solution.Services.InvoiceItem.Interfaces;
 
 namespace Solution.Api.Configurations;
@@ -10,6 +11,8 @@ public static class DIConfigurations
         builder.Services.AddHttpContextAccessor();
 
         builder.Services.AddTransient<IInvoiceItemService, InvoiceItemService>();
+
+        builder.Services.AddTransient<IAccountService, AccountService>();
 
         return builder;
     }

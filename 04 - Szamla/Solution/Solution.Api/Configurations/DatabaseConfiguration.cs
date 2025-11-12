@@ -10,11 +10,11 @@ namespace Solution.Api.Configurations
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
             builder.Services.AddDbContext<AppDbContext>(options => options.UseLazyLoadingProxies()
-                                                                          .UseSqlServer(connectionString, options =>
+                                                                          .UseSqlServer(connectionString, sqlOptions =>
                                                                           {
-                                                                              options.MigrationsAssembly(Solution.Database.AssemblyReference.Assembly);
-                                                                              options.EnableRetryOnFailure();
-                                                                              options.CommandTimeout(300);
+                                                                              sqlOptions.MigrationsAssembly("Solution.Api");
+                                                                              sqlOptions.EnableRetryOnFailure();
+                                                                              sqlOptions.CommandTimeout(300);
                                                                           }));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

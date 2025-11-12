@@ -10,4 +10,5 @@ public class AppDbContext(DbContextOptions<AppDbContext> options): DbContext(opt
     {
         base.OnConfiguring(optionsBuilder);
     }
+
 }

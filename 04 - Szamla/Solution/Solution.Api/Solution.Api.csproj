@@ -55,9 +55,5 @@
 		<ProjectReference Include="..\Solution.Database\Solution.Database.csproj" />
 		<ProjectReference Include="..\Solution.Services\Solution.Services.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Controllers\" />
-	</ItemGroup>
 	
 </Project>

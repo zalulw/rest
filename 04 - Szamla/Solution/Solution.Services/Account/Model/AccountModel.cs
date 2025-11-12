@@ -20,18 +20,18 @@ public partial class AccountModel : ObservableObject
         this.Invoicedate = entity.InvoiceDate;
     }
 
-    public AccountModel ToEntity()
+    public AccountEntity ToEntity()
     {
-        return new AccountModel
+        return new AccountEntity
         {
-            Accountnumber = this.Accountnumber,
-            Invoicedate = this.Invoicedate
+            AccountNumber = this.Accountnumber,
+            InvoiceDate = this.Invoicedate
         };
     }
 
     public void ToEntity(AccountEntity entity)
     {
-        entity.AccountNumber = this.Accountnumber;
-        entity.InvoiceDate = this.Invoicedate;
+        entity.AccountNumber = this.accountnumber;
+        entity.InvoiceDate = this.invoicedate;
     }
 }
