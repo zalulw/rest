@@ -9,7 +9,7 @@ namespace Solution.Services.Validators
         public static string AppelationProperty => nameof(InvoiceItemModel.Appelation);
         public static string UnitPriceProperty => nameof(InvoiceItemModel.Unitprice);
         public static string UnitQuantityProperty => nameof(InvoiceItemModel.Unitquantity);
-
+        public static string GlobalProperty => "Global";
 
         public InvoiceItemValidator(IHttpContextAccessor httpContextAccessor): base(httpContextAccessor)
         {
