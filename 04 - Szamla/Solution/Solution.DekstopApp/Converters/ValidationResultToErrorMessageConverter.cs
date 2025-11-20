@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation.Results;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Solution.DekstopApp.Converters
     {
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            if(value is not ValidationResultToErrorMessageConverter validationResult || validationResult.IsValid)
+            if(value is not ValidationResult validationResult || validationResult.IsValid)
             {
                 return null;
             }
