@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Http;
 using Solution.Database;
 using Solution.Services.InvoiceItem.Interfaces;
 using Solution.Services.InvoiceItem.Model;
@@ -14,7 +15,7 @@ namespace Solution.DekstopApp.ViewModels
         public IAsyncRelayCommand SubmitCommand => new AsyncRelayCommand(OnSubmitAsync);
         public ICommand ValidateCommand => new Command<string>(OnValidateAsync);
 
-        private InvoiceItemValidator validator => new InvoiceItemValidator();
+        private InvoiceItemValidator validator => new InvoiceItemValidator(null);
         [ObservableProperty]
         private ValidationResult validationResult = new ValidationResult();
 
@@ -26,14 +27,14 @@ namespace Solution.DekstopApp.ViewModels
 
         private async void OnValidateAsync(string propertyName)
         {
-            var result = await validator.ValidateAsync(this, options => options.IncludeProperties(propertyName));
+           /* var result = await validator.ValidateAsync(this, options => options.IncludeProperties(propertyName));
 
             ValidationResult.Errors.Remove(ValidationResult.Errors.FirstOrDefault(x => x.PropertyName == propertyName));
             ValidationResult.Errors.Remove(ValidationResult.Errors.FirstOrDefault(x => x.PropertyName == InvoiceItemValidator.GlobalProperty));
 
             ValidationResult.Errors.AddRange(result.Errors);
 
-            OnPropertyChanged(nameof(propertyName));
+            OnPropertyChanged(nameof(propertyName));*/
         }
 
         private void ClearForm()
