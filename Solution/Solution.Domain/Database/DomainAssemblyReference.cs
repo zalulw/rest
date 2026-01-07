@@ -1,4 +1,4 @@
-﻿namespace Solution.Domain;
+﻿namespace Solution.Domain.Database;
 
 public static class DomainAssemblyReference
 {

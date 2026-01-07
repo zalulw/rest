@@ -27,4 +27,10 @@
     <ProjectReference Include="..\Solution.Shared\Solution.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Middlewares\" />
+    <Folder Include="Transformers\" />
+  </ItemGroup>
+
 </Project>
