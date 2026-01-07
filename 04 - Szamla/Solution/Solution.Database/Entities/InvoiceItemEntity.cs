@@ -7,9 +7,8 @@ public class InvoiceItemEntity
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
-    [ForeignKey("Account")]
-    public int AccountNumber { get; set; }
-    public virtual AccountEntity Account { get; set; }
+    [Required]
+    public string AccountNumber { get; set; }
 
     [Required]
     public string Appelation { get; set; }
@@ -19,4 +18,5 @@ public class InvoiceItemEntity
 
     [Required]
     public int UnitQuantity { get; set; }
+
 }

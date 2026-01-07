@@ -5,7 +5,7 @@ public class AccountEntity
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public int AccountNumber { get; set; }
+    public string AccountNumber { get; set; }
 
     [Required]
     public DateTime InvoiceDate { get; set; }

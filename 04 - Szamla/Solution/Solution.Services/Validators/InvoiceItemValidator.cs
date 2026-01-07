@@ -19,10 +19,11 @@ namespace Solution.Services.Validators
                                   .WithMessage("Id is required");
             }
 
-            RuleFor(i => i.Accountnumber).NotEmpty()
-                                         .WithMessage("Account number is required")
-                                         .GreaterThanOrEqualTo(16)
-                                         .LessThanOrEqualTo(24);
+            RuleFor(i => i.Accountnumber)
+                    .NotEmpty()
+                    .WithMessage("Account number is required")
+                    .Length(16, 24) 
+                    .WithMessage("Account number must be between 16 and 24 characters");
 
             RuleFor(i => i.Appelation).NotEmpty()
                                       .WithMessage("Appelation is required")
@@ -33,10 +34,6 @@ namespace Solution.Services.Validators
 
             RuleFor(i => i.Unitquantity).GreaterThan(0)
                                         .WithMessage("Unit quantity must be greater than zero");
-
         }
- 
     }
-    
-    
 }

@@ -12,15 +12,19 @@ namespace Solution.Services.InvoiceItem.Model
         [ObservableProperty]
         [JsonPropertyName("id")]
         private int id;
+
         [ObservableProperty]
         [JsonPropertyName("account_number")]
-        private int accountnumber;
+        private string accountnumber; 
+
         [ObservableProperty]
         [JsonPropertyName("appelation")]
         private string appelation;
+
         [ObservableProperty]
         [JsonPropertyName("unit_price")]
         private double unitprice;
+
         [ObservableProperty]
         [JsonPropertyName("unit_quantity")]
         private int unitquantity;

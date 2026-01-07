@@ -6,7 +6,7 @@ public partial class AccountModel : ObservableObject
 {
     [ObservableProperty]
     [JsonPropertyName("account_number")]
-    private int accountnumber;
+    private string accountnumber;
 
     [ObservableProperty]
     [JsonPropertyName("invoice_date")]

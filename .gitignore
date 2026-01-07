@@ -34,3 +34,18 @@ homework 1/homework/Validators/obj
 04 - Szamla/Solution/Solution.Database/bin
 04 - Szamla/Solution/Solution.Services/bin
 04 - Szamla/Solution/Solution.DekstopApp/bin
+Bills/Bills_Solution/Bills_Solution/obj
+Bills/Bills_Solution/Solution.Api/obj
+Bills/Bills_Solution/Solution.Core/obj
+Bills/Bills_Solution/Solution.Database/obj
+Bills/Bills_Solution/Solution.Services/obj
+Bills/Bills_Solution/Solution.Validations/obj
+Solution/Solution.Domain/obj
+Solution/Solution.Services/obj
+Solution/Solution.Shared/obj
+Solution/Solution.Services/bin
+Solution/Solution.WebAPI/bin
+Solution/Solution.WebAPI/obj
+Solution/Solution.Domain/bin
+Solution/.vs
+Bills/Bills_Solution/.vs

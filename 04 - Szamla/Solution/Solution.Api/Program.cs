@@ -4,8 +4,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.LoadAppSettingsVariables()
        .ConfigureDI()
-       .ConfigureDatabase()
-       .ConfigureFluentValidation();
+       .ConfigureDatabase();
+       
 
 builder.Services.AddControllers();
 

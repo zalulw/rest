@@ -16,9 +16,11 @@ namespace Solution.Api.Configurations
                                                                               sqlOptions.EnableRetryOnFailure();
                                                                               sqlOptions.CommandTimeout(300);
                                                                           }));
+
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             return builder;
         }
+
     }
 }

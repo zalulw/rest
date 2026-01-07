@@ -20,6 +20,17 @@ public class AccountService(AppDbContext dbContext) : IAccountService
         return model;
     }
 
+    public async Task<ErrorOr<List<AccountModel>>> GetPagedAsync(int pageNumber)
+    {
+        const int pageSize = 10;
+        var accounts = await dbContext.Accounts.AsNoTracking()
+                                               .Skip(pageNumber * pageSize)
+                                               .Take(pageSize)
+                                               .Select(a => new AccountModel(a))
+                                               .ToListAsync();
+        return accounts;
+    }
+
     public async Task<ErrorOr<Success>> UpdateAsync(AccountModel model)
     {
         var result = await dbContext.Accounts.AsNoTracking()
@@ -28,7 +39,7 @@ public class AccountService(AppDbContext dbContext) : IAccountService
         return result > 0 ? Result.Success : Error.NotFound();
     }
 
-    public async Task<ErrorOr<Success>> DeleteAsync(int accountNumber)
+    public async Task<ErrorOr<Success>> DeleteAsync(string accountNumber)
     {
         var result = await dbContext.Accounts.AsNoTracking()
                                              .Where(a => a.AccountNumber == accountNumber)
@@ -36,7 +47,7 @@ public class AccountService(AppDbContext dbContext) : IAccountService
         return result > 0 ? Result.Success : Error.NotFound();
     }
 
-    public async Task<ErrorOr<AccountModel>> GetByIdAsync(int accountNumber)
+    public async Task<ErrorOr<AccountModel>> GetByIdAsync(string accountNumber)
     {
         var account = await dbContext.Accounts.FirstOrDefaultAsync(a => a.AccountNumber == accountNumber);
         if (account is null)

@@ -6,7 +6,7 @@ public class InvoiceItemService(AppDbContext dbContext) : IInvoiceItemService
 
     public async Task<ErrorOr<InvoiceItemModel>> CreateAsync(InvoiceItemModel model)
     {
-        bool exists = await dbContext.InvoiceItems.AnyAsync(i => i.Account.AccountNumber == model.Accountnumber &&
+        bool exists = await dbContext.InvoiceItems.AnyAsync(i => i.AccountNumber == model.Accountnumber &&
                                                                  i.Appelation == model.Appelation);
 
         if (exists)
