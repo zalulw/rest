@@ -50,3 +50,8 @@ Solution/Solution.Domain/bin
 Solution/.vs
 Bills/Bills_Solution/.vs
 Solution/Solution.Shared/bin
+02_Authentification/.vs
+02_Authentification/Solution.Shared/obj
+02_Authentification/Solution.Domain/obj
+02_Authentification/Solution.Services/obj
+02_Authentification/Solution.WebAPI/obj
