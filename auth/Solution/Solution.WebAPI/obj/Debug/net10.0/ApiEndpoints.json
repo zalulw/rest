@@ -1,0 +1,44 @@
+[
+  {
+    "ContainingType": "Solution.WebAPI.Controllers.SecurityController",
+    "Method": "LoginAsync",
+    "RelativePath": "api/security/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Solution.Domain.Models.Requests.Security.LoginRequestModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Solution.WebAPI.Controllers.SecurityController",
+    "Method": "RegisterAsync",
+    "RelativePath": "api/security/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Solution.Domain.Models.Requests.Security.RegisterRequestModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Solution.WebAPI.Controllers.UserController",
+    "Method": "GetUsersAsync",
+    "RelativePath": "api/users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

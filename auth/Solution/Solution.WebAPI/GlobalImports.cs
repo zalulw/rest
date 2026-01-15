@@ -1,0 +1,12 @@
+﻿global using Microsoft.EntityFrameworkCore;
+global using Solution.Domain.Database;
+global using Solution.WebAPI.Configurations;
+global using Solution.Domain.Models.Settings;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Mvc;
+global using Solution.Domain.Models.Requests.Security;
+global using Solution.Services.Security;
+global using System.ComponentModel.DataAnnotations;
+global using Solution.Services.User;
+global using Solution.Shared.Extensions;

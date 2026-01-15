@@ -1,6 +1,0 @@
-﻿namespace Solution.Domain.Database;
-
-public static class DomainAssemblyReference
-{
-    public static readonly Assembly Assembly = typeof(AssemblyReference).Assembly;
-}

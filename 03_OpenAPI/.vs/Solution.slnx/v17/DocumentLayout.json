@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\b1polzal\\Desktop\\rest\\03_OpenAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B79411D6-B919-F248-B68C-DDCB2C8A4BC5}|Example_01\\Example_01.csproj|c:\\users\\b1polzal\\desktop\\rest\\03_openapi\\example_01\\configuration\\configureopenapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B79411D6-B919-F248-B68C-DDCB2C8A4BC5}|Example_01\\Example_01.csproj|solutionrelative:example_01\\configuration\\configureopenapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ConfigureOpenAPI.cs",
+              "DocumentMoniker": "C:\\Users\\b1polzal\\Desktop\\rest\\03_OpenAPI\\Example_01\\Configuration\\ConfigureOpenAPI.cs",
+              "RelativeDocumentMoniker": "Example_01\\Configuration\\ConfigureOpenAPI.cs",
+              "ToolTip": "C:\\Users\\b1polzal\\Desktop\\rest\\03_OpenAPI\\Example_01\\Configuration\\ConfigureOpenAPI.cs",
+              "RelativeToolTip": "Example_01\\Configuration\\ConfigureOpenAPI.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAowD4AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T07:17:22.94Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
